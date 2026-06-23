@@ -1,0 +1,198 @@
+<!-- ===========================
+     Landing Page - EduPulse
+     =========================== -->
+
+<!-- Add top padding so content clears the fixed navbar -->
+<div class="landing-wrapper">
+
+  <!-- ── HERO SECTION ── -->
+  <section class="hero">
+    <div class="container hero-inner">
+
+      <!-- Left: Text content -->
+      <div class="hero-text">
+        <span class="badge">NEW: AI-POWERED ANALYTICS 2.0</span>
+        <h1>Precision in Academic Performance Tracking.</h1>
+        <p>Empower educators with real-time insights and institutional-grade analytics. EduPulse transforms complex data into actionable steps for student success.</p>
+        <div class="hero-actions">
+          <button class="btn-primary">
+            Request a Demo
+            <span class="material-icons">arrow_forward</span>
+          </button>
+          <button class="btn-outline">View Sample Reports</button>
+        </div>
+      </div>
+
+      <!-- Right: Tablet mockup on teal background -->
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <div class="dashboard-mockup">
+            <div class="mockup-header">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-sidebar"></div>
+              <div class="mockup-content">
+                <div class="mockup-bar" style="width: 80%; height: 8px;"></div>
+                <div class="mockup-bar" style="width: 60%; height: 8px;"></div>
+                <div class="mockup-chart">
+                  <div class="bar" style="height: 40%;"></div>
+                  <div class="bar" style="height: 70%;"></div>
+                  <div class="bar" style="height: 55%;"></div>
+                  <div class="bar" style="height: 85%;"></div>
+                  <div class="bar" style="height: 65%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FEATURES SECTION ── -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything you need to lead</h2>
+        <p>Built for the specific needs of modern educational institutions.</p>
+      </div>
+
+      <!-- Feature cards grid -->
+      <div class="features-grid">
+  @for (feature of features; track feature.title) {
+    <div class="feature-card" [class]="'feature-card card-' + feature.badge">
+
+      <!-- Laptop visual for Advanced Analytics -->
+      @if (feature.visual === 'laptop') {
+        <div class="card-visual laptop-visual">
+          <div class="laptop">
+            <div class="laptop-screen">
+              <div class="screen-content">
+                <div class="screen-bar"></div>
+                <div class="screen-bar short"></div>
+                <div class="screen-chart">
+                  <div class="s-bar" style="height:50%"></div>
+                  <div class="s-bar" style="height:75%"></div>
+                  <div class="s-bar" style="height:60%"></div>
+                  <div class="s-bar" style="height:90%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+        </div>
+      }
+
+      <!-- Chart visual for Progress Tracking -->
+      @if (feature.visual === 'chart') {
+        <div class="card-visual chart-visual">
+          <div class="mini-chart">
+            <div class="m-bar" style="height:40%"></div>
+            <div class="m-bar" style="height:65%"></div>
+            <div class="m-bar" style="height:50%"></div>
+            <div class="m-bar" style="height:80%"></div>
+            <div class="m-bar" style="height:60%"></div>
+            <div class="m-bar" style="height:90%"></div>
+            <div class="m-bar" style="height:70%"></div>
+          </div>
+        </div>
+      }
+
+      <!-- Icon visual for Exam Management -->
+      @if (feature.visual === 'icon') {
+        <div class="card-visual icon-visual">
+          <span class="material-icons big-icon">assignment</span>
+        </div>
+      }
+
+      <span class="badge">{{ feature.badge }}</span>
+      <h3>{{ feature.title }}</h3>
+      <p>{{ feature.description }}</p>
+
+      @if (feature.highlights) {
+        <ul class="highlights">
+          @for (highlight of feature.highlights; track highlight) {
+            <li>
+              <span class="material-icons">check_circle</span>
+              {{ highlight }}
+            </li>
+          }
+        </ul>
+      }
+
+      @if (feature.scheduled) {
+        <div class="scheduled-badge">
+          <small>Next Scheduled Report</small>
+          <strong>{{ feature.scheduled }}</strong>
+        </div>
+      }
+
+    </div>
+  }
+</div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS SECTION ── -->
+  <section class="section testimonials" id="solutions">
+    <div class="container">
+      <div class="testimonials-inner">
+
+        <!-- Left: heading -->
+        <div class="testimonials-heading">
+          <h2>Trusted by 5,000+ Schools</h2>
+          <p>Hear from the educators and administrators who use EduPulse to transform their institutions every day.</p>
+        </div>
+
+        <!-- Right: testimonial cards -->
+        <div class="testimonials-grid">
+          @for (testimonial of testimonials; track testimonial.name) {
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">"{{ testimonial.quote }}"</p>
+              <div class="testimonial-author">
+                <div class="avatar">{{ testimonial.initials }}</div>
+                <div>
+                  <strong>{{ testimonial.name }}</strong>
+                  <small>{{ testimonial.role }}</small>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <h2>Ready to transform your school's data?</h2>
+      <p>Join thousands of schools already using EduPulse to achieve academic excellence.</p>
+      <div class="cta-actions">
+        <button class="btn-white">Request a Demo</button>
+        <button class="btn-white-outline">View All Solutions</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo">EduPulse <span>Results</span></span>
+        <small>Precision analytics for the modern classroom.</small>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+      </div>
+      <small class="footer-copy">© 2026 EduPulse Learning. All rights reserved.</small>
+    </div>
+  </footer>
+
+</div>

@@ -1,0 +1,537 @@
+/* ===========================
+   Landing Page Styles
+   =========================== */
+
+/* Push content below fixed navbar */
+.landing-wrapper {
+  padding-top: 68px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--white);
+  padding: 80px 0;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 520px;
+}
+
+.hero-text h1 {
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.hero-text p {
+  font-size: 1rem;
+  color: var(--text-mid);
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Hero visual — teal box with dashboard mockup */
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-image-wrapper {
+  background: var(--accent);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CSS Dashboard mockup */
+.dashboard-mockup {
+  background: var(--primary);
+  border-radius: 12px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.mockup-header {
+  background: #142f3d;
+  padding: 10px 14px;
+  display: flex;
+  gap: 6px;
+}
+
+.mockup-header span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+
+.mockup-body {
+  display: flex;
+  padding: 16px;
+  gap: 12px;
+  min-height: 180px;
+}
+
+.mockup-sidebar {
+  width: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+}
+
+.mockup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mockup-bar {
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+}
+
+.mockup-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  flex: 1;
+  padding-top: 10px;
+}
+
+.mockup-chart .bar {
+  flex: 1;
+  background: var(--accent);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.8;
+}
+
+/* ── FEATURES ── */
+.features {
+  background: var(--bg-light);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-header p {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  box-shadow: var(--shadow);
+}
+
+.feature-card h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.feature-card p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+/* ── FEATURE CARD VISUALS ── */
+.card-visual {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* Laptop visual */
+.laptop-visual {
+  background: #1a1a2e;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 160px;
+}
+
+.laptop {
+  width: 100%;
+  max-width: 220px;
+}
+
+.laptop-screen {
+  background: #0d1117;
+  border-radius: 6px 6px 0 0;
+  padding: 12px;
+  border: 2px solid #2d2d2d;
+}
+
+.screen-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.screen-bar {
+  height: 6px;
+  background: rgba(77, 184, 184, 0.4);
+  border-radius: 3px;
+  width: 80%;
+}
+
+.screen-bar.short {
+  width: 50%;
+}
+
+.screen-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 50px;
+  margin-top: 6px;
+}
+
+.s-bar {
+  flex: 1;
+  background: var(--accent);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.8;
+}
+
+.laptop-base {
+  height: 8px;
+  background: #2d2d2d;
+  border-radius: 0 0 4px 4px;
+  width: 110%;
+  margin-left: -5%;
+}
+
+/* Chart visual for Progress Tracking */
+.chart-visual {
+  background: var(--accent-light);
+  padding: 24px;
+  min-height: 120px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  width: 100%;
+  height: 80px;
+}
+
+.m-bar {
+  flex: 1;
+  background: var(--accent);
+  border-radius: 3px 3px 0 0;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.m-bar:hover {
+  opacity: 1;
+}
+
+/* Icon visual for Exam Management */
+.icon-visual {
+  background: var(--bg-light);
+  padding: 24px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.big-icon {
+  font-size: 72px !important;
+  color: var(--border);
+}
+
+/* Highlights list inside feature card */
+.highlights {
+  list-style: none;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.highlights li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+}
+
+.highlights .material-icons {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+/* Scheduled report badge */
+.scheduled-badge {
+  margin-top: 20px;
+  background: var(--primary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scheduled-badge small {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+}
+
+.scheduled-badge strong {
+  color: var(--white);
+  font-size: 0.95rem;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  background: var(--white);
+}
+
+.testimonials-inner {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+.testimonials-heading {
+  flex: 0 0 280px;
+}
+
+.testimonials-heading h2 {
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.testimonials-heading p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+}
+
+.testimonials-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+
+.stars {
+  color: #f6ad55;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.quote {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.testimonial-author strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+}
+
+.testimonial-author small {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  background: var(--primary);
+  padding: 80px 0;
+}
+
+.cta-inner {
+  text-align: center;
+}
+
+.cta-inner h2 {
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.cta-inner p {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 32px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-brand .logo {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.footer-brand .logo span {
+  color: var(--accent);
+}
+
+.footer-brand small {
+  color: var(--text-light);
+  font-size: 0.8rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-copy {
+  color: var(--text-light);
+  font-size: 0.8rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}
