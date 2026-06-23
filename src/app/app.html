@@ -1,7 +1,8 @@
-<!-- Navbar appears on every page -->
-<app-navbar />
+<!-- Only show navbar on landing page, not dashboards -->
+@if (!isDashboard) {
+  <app-navbar />
+}
 
-<!-- Each route renders its component here -->
 <main>
   <router-outlet />
 </main>
