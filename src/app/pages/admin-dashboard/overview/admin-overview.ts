@@ -10,10 +10,13 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Chart, registerables } from 'chart.js';
-import { StudentService, Student } from '../../core/services/student';
-import { GradeService, Grade } from '../../core/services/grade';
+import { SidebarComponent } from '../../../shared/components/sidebar/sidebar';
+import {
+  StudentService,
+  Student,
+} from '../../../core/services/student';
+import { GradeService, Grade } from '../../../core/services/grade';
 
-// Register all Chart.js components
 Chart.register(...registerables);
 
 interface FormSummary {
@@ -25,16 +28,15 @@ interface FormSummary {
 }
 
 @Component({
-  selector: 'app-admin-dashboard',
+  selector: 'app-admin-overview',
   standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './admin-dashboard.html',
-  styleUrl: './admin-dashboard.css',
+  imports: [CommonModule, RouterLink, SidebarComponent],
+  templateUrl: './admin-overview.html',
+  styleUrl: './admin-overview.css',
 })
-export class AdminDashboard
+export class AdminOverview
   implements OnInit, OnDestroy, AfterViewInit
 {
-  // References to the canvas elements in the HTML
   @ViewChild('barChart') barChartRef!: ElementRef;
   @ViewChild('donutChart') donutChartRef!: ElementRef;
 
@@ -56,13 +58,10 @@ export class AdminDashboard
     this.loadData();
   }
 
-  // AfterViewInit fires after the HTML template is rendered
-  // We need this because charts need canvas elements to exist in the DOM first
   ngAfterViewInit(): void {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-    // Destroy charts to prevent memory leaks
     this.barChart?.destroy();
     this.donutChart?.destroy();
   }
@@ -76,7 +75,6 @@ export class AdminDashboard
             this.grades = grades;
             this.computeFormSummaries();
             this.loading = false;
-            // Wait for DOM to update before rendering charts
             setTimeout(() => this.renderCharts(), 100);
           },
           error: (err) => {
@@ -134,13 +132,9 @@ export class AdminDashboard
             beginAtZero: true,
             max: 100,
             grid: { color: 'rgba(0,0,0,0.05)' },
-            ticks: {
-              callback: (value) => `${value}%`,
-            },
+            ticks: { callback: (value) => `${value}%` },
           },
-          x: {
-            grid: { display: false },
-          },
+          x: { grid: { display: false } },
         },
       },
     });
@@ -169,10 +163,7 @@ export class AdminDashboard
         plugins: {
           legend: {
             position: 'bottom',
-            labels: {
-              padding: 16,
-              font: { size: 12 },
-            },
+            labels: { padding: 16, font: { size: 12 } },
           },
         },
       },

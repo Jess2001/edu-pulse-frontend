@@ -1,0 +1,91 @@
+<main class="dashboard-main">
+
+  <header class="dashboard-header">
+    <div>
+      <h1>My Class Dashboard</h1>
+      <p>Form 1 — Class performance overview</p>
+    </div>
+    <a routerLink="/teacher/students" class="btn-primary">
+      <span class="material-icons">people</span>
+      View All Students
+    </a>
+  </header>
+
+  @if (loading) {
+    <div class="loading-state">
+      <span class="material-icons spinning">sync</span>
+      <p>Loading class data...</p>
+    </div>
+  }
+
+  @if (!loading && classSummary) {
+
+    <!-- Class summary cards -->
+    <section class="summary-cards">
+      <div class="summary-card">
+        <span class="material-icons card-icon">people</span>
+        <div>
+          <small>Total Students</small>
+          <strong>{{ classSummary.totalStudents }}</strong>
+        </div>
+      </div>
+      <div class="summary-card">
+        <span class="material-icons card-icon">trending_up</span>
+        <div>
+          <small>Class Average</small>
+          <strong>{{ classSummary.meanMark }}%</strong>
+        </div>
+      </div>
+      <div class="summary-card">
+        <span class="material-icons card-icon">grade</span>
+        <div>
+          <small>Class Grade</small>
+          <span class="grade-badge" [class]="'grade-' + classSummary.meanGrade">
+            {{ classSummary.meanGrade }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Top performers -->
+    <section class="top-performers-section">
+      <div class="section-title">
+        <h2>Top Performers</h2>
+        <p>Highest performing students this term</p>
+      </div>
+      <div class="performers-grid">
+        @for (student of topPerformers; track student.id) {
+          <div class="performer-card">
+            <div class="rank">{{ $index + 1 }}</div>
+            <div class="performer-avatar">{{ student.name.charAt(0) }}</div>
+            <div class="performer-info">
+              <strong>{{ student.name }}</strong>
+              <small>{{ student.stream }} Stream</small>
+            </div>
+            <div class="performer-score">
+              <strong>{{ student.avg }}%</strong>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Quick actions -->
+    <section class="quick-actions">
+      <div class="action-card">
+        <span class="material-icons action-icon">assessment</span>
+        <h3>View Detailed Analytics</h3>
+        <p>See subject performance breakdown and trends</p>
+        <a routerLink="/teacher/students" class="link-btn">View Students →</a>
+      </div>
+      <div class="action-card">
+        <span class="material-icons action-icon">edit</span>
+        <h3>Record Grades</h3>
+        <p>Update student marks and grades</p>
+        <a href="#" class="link-btn">Coming Soon</a>
+      </div>
+    </section>
+
+  }
+
+</main>

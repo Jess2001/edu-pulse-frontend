@@ -8,17 +8,41 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    loadComponent: () =>
-      import('./pages/admin-dashboard/admin-dashboard').then(
-        (m) => m.AdminDashboard,
-      ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/admin-dashboard/overview/admin-overview').then(
+            (m) => m.AdminOverview,
+          ),
+      },
+      {
+        path: 'students',
+        loadComponent: () =>
+          import('./pages/admin-dashboard/students/students').then(
+            (m) => m.AdminStudents,
+          ),
+      },
+    ],
   },
   {
     path: 'teacher',
-    loadComponent: () =>
-      import('./pages/teacher-dashboard/teacher-dashboard').then(
-        (m) => m.TeacherDashboard,
-      ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/teacher-dashboard/teacher-overview/teacher-overview').then(
+            (m) => m.TeacherOverview,
+          ),
+      },
+      {
+        path: 'students',
+        loadComponent: () =>
+          import('./pages/teacher-dashboard/students/students').then(
+            (m) => m.TeacherStudents,
+          ),
+      },
+    ],
   },
   {
     path: 'student',

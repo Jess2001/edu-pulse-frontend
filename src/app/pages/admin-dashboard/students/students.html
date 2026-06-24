@@ -1,0 +1,26 @@
+<main class="dashboard-main">
+  <header class="dashboard-header">
+    <div>
+      <h1>Manage Students</h1>
+      <p>View, add, edit and delete student records</p>
+    </div>
+  </header>
+
+  @if (loading) {
+    <div class="loading-state">
+      <span class="material-icons spinning">sync</span>
+      <p>Loading students...</p>
+    </div>
+  }
+
+  @if (!loading) {
+    <!-- Reusable student table component — admin can edit -->
+    <app-student-table 
+      [students]="students"
+      [studentGrades]="studentGrades"
+      [canEdit]="true"
+      title="All Students"
+      description="Manage all students across the school"
+    />
+  }
+</main>

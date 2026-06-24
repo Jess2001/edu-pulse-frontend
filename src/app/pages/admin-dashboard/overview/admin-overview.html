@@ -1,0 +1,137 @@
+<!-- Admin Overview — No sidebar, just content -->
+<main class="dashboard-main">
+
+  <header class="dashboard-header">
+    <div>
+      <h1>Admin Dashboard</h1>
+      <p>School performance overview — Academic Year 2026</p>
+    </div>
+    <div class="header-actions">
+      <a routerLink="/admin/students" class="btn-primary">
+        <span class="material-icons">people</span>
+        Manage Students
+      </a>
+    </div>
+  </header>
+
+  @if (loading) {
+    <div class="loading-state">
+      <span class="material-icons spinning">sync</span>
+      <p>Loading dashboard data...</p>
+    </div>
+  }
+
+  @if (!loading) {
+
+    <!-- Summary cards -->
+    <section class="summary-cards">
+      <div class="summary-card">
+        <span class="material-icons card-icon">people</span>
+        <div>
+          <small>Total Students</small>
+          <strong>{{ totalStudents }}</strong>
+        </div>
+      </div>
+      <div class="summary-card">
+        <span class="material-icons card-icon">person</span>
+        <div>
+          <small>Total Teachers</small>
+          <strong>{{ totalTeachers }}</strong>
+        </div>
+      </div>
+      <div class="summary-card">
+        <span class="material-icons card-icon">class</span>
+        <div>
+          <small>Total Classes</small>
+          <strong>{{ totalClasses }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="charts-row">
+      <div class="chart-card wide">
+        <div class="section-title">
+          <h2>Mean Mark by Form</h2>
+          <p>Average performance across all subjects per form</p>
+        </div>
+        <div class="chart-wrapper">
+          <canvas #barChart></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="section-title">
+          <h2>Enrollment Distribution</h2>
+          <p>Students per form</p>
+        </div>
+        <div class="chart-wrapper">
+          <canvas #donutChart></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance table -->
+    <section class="performance-section">
+      <div class="section-title">
+        <h2>Performance by Form</h2>
+        <p>Mean grades, marks and points per academic form</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="performance-table">
+          <thead>
+            <tr>
+              <th>Form</th>
+              <th>Total Students</th>
+              <th>Mean Mark</th>
+              <th>Mean Grade</th>
+              <th>Mean Points</th>
+              <th>Performance</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (summary of formSummaries; track summary.form) {
+              <tr>
+                <td><strong>{{ summary.form }}</strong></td>
+                <td>{{ summary.totalStudents }}</td>
+                <td>{{ summary.meanMark }}%</td>
+                <td>
+                  <span class="grade-badge" [class]="'grade-' + summary.meanGrade.replace('+','plus').replace('-','minus')">
+                    {{ summary.meanGrade }}
+                  </span>
+                </td>
+                <td>{{ summary.meanPoints }}</td>
+                <td>
+                  <div class="progress-bar-wrapper">
+                    <div class="progress-bar" [style.width.%]="summary.meanMark"></div>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Insights -->
+    <section class="insights-row">
+      <div class="insight-card">
+        <span class="material-icons insight-icon">lightbulb</span>
+        <div>
+          <small>Quick Insight</small>
+          <strong>Form 4 leads overall performance</strong>
+          <p>Form 4 has the highest mean mark this term. Consider sharing their study strategies with lower forms.</p>
+        </div>
+      </div>
+      <div class="insight-card note">
+        <span class="material-icons insight-icon">info</span>
+        <div>
+          <small>Academic Performance Note</small>
+          <strong>Overall school average: B+</strong>
+          <p>Next milestone: Final exams in 14 days. Ensure all stream marks are entered by Monday.</p>
+        </div>
+      </div>
+    </section>
+
+  }
+
+</main>

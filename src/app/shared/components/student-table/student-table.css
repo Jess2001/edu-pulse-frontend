@@ -1,0 +1,244 @@
+/* ===========================
+   Reusable Student Table Component
+   =========================== */
+
+.student-table-wrapper {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-info h2 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.header-info p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Controls — search & sort */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  background: var(--bg-light);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.search-box .material-icons {
+  color: var(--text-light);
+  font-size: 18px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-dark);
+}
+
+.search-input::placeholder {
+  color: var(--text-light);
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+/* Table container */
+.table-container {
+  overflow-x: auto;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 12px;
+  color: var(--text-light);
+}
+
+.no-data .material-icons {
+  font-size: 48px !important;
+  opacity: 0.2;
+}
+
+/* Table */
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.students-table thead tr {
+  background: var(--bg-light);
+  border-bottom: 2px solid var(--border);
+}
+
+.students-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.students-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dark);
+}
+
+.students-table tbody tr:hover {
+  background: var(--bg-light);
+}
+
+.student-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Status badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-badge.excellent { background: #d1fae5; color: #065f46; }
+.status-badge.good { background: #dbeafe; color: #1e40af; }
+.status-badge.satisfactory { background: #fef3c7; color: #92400e; }
+.status-badge.poor { background: #fee2e2; color: #991b1b; }
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn .material-icons {
+  font-size: 16px;
+}
+
+.action-btn.view {
+  color: var(--accent);
+}
+
+.action-btn.view:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.action-btn.edit {
+  color: #3b82f6;
+}
+
+.action-btn.edit:hover {
+  background: #dbeafe;
+  border-color: #3b82f6;
+}
+
+.action-btn.delete {
+  color: #ef4444;
+}
+
+.action-btn.delete:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  .search-box {
+    order: -1;
+  }
+
+  .students-table {
+    font-size: 0.8rem;
+  }
+
+  .students-table td,
+  .students-table th {
+    padding: 10px 12px;
+  }
+
+  .actions {
+    gap: 4px;
+  }
+
+  .action-btn {
+    width: 28px;
+    height: 28px;
+  }
+}

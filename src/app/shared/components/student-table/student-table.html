@@ -1,0 +1,101 @@
+<!-- ===========================
+     Reusable Student Table Component
+     =========================== -->
+<div class="student-table-wrapper">
+
+  <!-- Header -->
+  <div class="table-header">
+    <div class="header-info">
+      <h2>{{ title }}</h2>
+      <p>{{ description }}</p>
+    </div>
+    @if (canEdit) {
+      <button class="btn-primary">
+        <span class="material-icons">add</span>
+        Add Student
+      </button>
+    }
+  </div>
+
+  <!-- Search & Sort -->
+  <div class="controls">
+    <div class="search-box">
+      <span class="material-icons">search</span>
+      <input 
+        type="text" 
+        placeholder="Search by name or form..." 
+        [(ngModel)]="searchQuery"
+        class="search-input"
+      />
+    </div>
+
+    <select [(ngModel)]="sortBy" class="sort-select">
+      <option value="form">Sort by Form</option>
+      <option value="name">Sort by Name</option>
+      <option value="average">Sort by Performance</option>
+    </select>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    @if (filteredStudents.length === 0) {
+      <div class="no-data">
+        <span class="material-icons">inbox</span>
+        <p>No students found</p>
+      </div>
+    }
+
+    @if (filteredStudents.length > 0) {
+      <table class="students-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Form</th>
+            <th>Stream</th>
+            <th>Average</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (student of filteredStudents; track student.id) {
+            <tr>
+              <td>
+                <div class="student-cell">
+                  <div class="avatar">{{ student.name.charAt(0) }}</div>
+                  <strong>{{ student.name }}</strong>
+                </div>
+              </td>
+              <td>{{ student.form }}</td>
+              <td>{{ student.stream }}</td>
+              <td>
+                <strong>{{ getStudentAverage(student.id) }}%</strong>
+              </td>
+              <td>
+                <span class="status-badge" [class]="getStatusClass(getStudentAverage(student.id))">
+                  {{ getStatus(getStudentAverage(student.id)) }}
+                </span>
+              </td>
+              <td>
+                <div class="actions">
+                  <button class="action-btn view" (click)="viewDetails(student)" title="View Grades">
+                    <span class="material-icons">visibility</span>
+                  </button>
+                  @if (canEdit) {
+                    <button class="action-btn edit" (click)="editStudent(student)" title="Edit">
+                      <span class="material-icons">edit</span>
+                    </button>
+                    <button class="action-btn delete" (click)="deleteStudent(student)" title="Delete">
+                      <span class="material-icons">delete</span>
+                    </button>
+                  }
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+
+</div>
