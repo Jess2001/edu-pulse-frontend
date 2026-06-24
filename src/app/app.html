@@ -1,8 +1,13 @@
-<!-- Only show navbar on landing page, not dashboards -->
+<!-- Always show sidebar on dashboard routes -->
+@if (isDashboard) {
+  <app-sidebar />
+}
+
+<!-- Navbar only on landing -->
 @if (!isDashboard) {
   <app-navbar />
 }
 
-<main>
+<main [class.with-sidebar]="isDashboard">
   <router-outlet />
 </main>

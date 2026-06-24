@@ -1,0 +1,30 @@
+<!-- ===========================
+     Shared Sidebar Component
+     =========================== -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a routerLink="/">
+      EduPulse <span>Results</span>
+    </a>
+  </div>
+
+  <nav class="sidebar-nav">
+    @for (item of visibleNavItems; track item.path) {
+      <a 
+        class="nav-item"
+        [class.active]="isActive(item.path)"
+        [routerLink]="item.path"
+      >
+        <span class="material-icons">{{ item.icon }}</span>
+        <span class="label">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" (click)="logout()">
+      <span class="material-icons">logout</span>
+      <span>Sign Out</span>
+    </button>
+  </div>
+</aside>
