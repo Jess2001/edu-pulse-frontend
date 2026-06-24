@@ -1,0 +1,63 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <div class="login-card">
+      <div class="logo">
+        <h1>EduPulse <span>Results</span></h1>
+        <p>Academic Performance Analytics</p>
+      </div>
+
+      <div class="login-form">
+        <h2>Select Your Role</h2>
+        <p>Choose your role to access the dashboard</p>
+
+        <div class="role-selector">
+          <label class="role-option" [class.selected]="selectedRole === 'admin'">
+            <input type="radio" name="role" value="admin" [(ngModel)]="selectedRole" />
+            <div class="role-content">
+              <span class="material-icons">admin_panel_settings</span>
+              <div>
+                <strong>Administrator</strong>
+                <small>Manage all students and classes</small>
+              </div>
+            </div>
+          </label>
+
+          <label class="role-option" [class.selected]="selectedRole === 'teacher'">
+            <input type="radio" name="role" value="teacher" [(ngModel)]="selectedRole" />
+            <div class="role-content">
+              <span class="material-icons">school</span>
+              <div>
+                <strong>Teacher</strong>
+                <small>Track your class performance</small>
+              </div>
+            </div>
+          </label>
+
+          <label class="role-option" [class.selected]="selectedRole === 'student'">
+            <input type="radio" name="role" value="student" [(ngModel)]="selectedRole" />
+            <div class="role-content">
+              <span class="material-icons">person</span>
+              <div>
+                <strong>Student</strong>
+                <small>View your grades and progress</small>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <button class="btn-primary full-width" (click)="login()">
+          Continue
+        </button>
+
+        <p class="demo-note">
+          <span class="material-icons">info</span>
+          This is a demo. Role selection persists in session for this session only.
+        </p>
+      </div>
+    </div>
+
+    <div class="login-footer">
+      <p>EduPulse © 2026. All rights reserved.</p>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,75 @@
-<p>student-dashboard works!</p>
+<main class="dashboard-main">
+
+  <header class="dashboard-header">
+    @if (currentStudent) {
+      <div>
+        <h1>Welcome, {{ currentStudent.name }}</h1>
+        <p>{{ currentStudent.form }} · {{ currentStudent.stream }} Stream</p>
+      </div>
+    }
+  </header>
+
+  @if (loading) {
+    <div class="loading-state">
+      <span class="material-icons spinning">sync</span>
+      <p>Loading your grades...</p>
+    </div>
+  }
+
+  @if (!loading && currentStudent) {
+
+    <!-- Performance summary -->
+    <section class="summary-cards">
+      <div class="summary-card">
+        <span class="material-icons card-icon">trending_up</span>
+        <div>
+          <small>Your Average</small>
+          <strong>{{ averageScore }}%</strong>
+        </div>
+      </div>
+      <div class="summary-card">
+        <span class="material-icons card-icon">subject</span>
+        <div>
+          <small>Subjects</small>
+          <strong>{{ grades.length }}</strong>
+        </div>
+      </div>
+      <div class="summary-card">
+        <span class="material-icons card-icon">grade</span>
+        <div>
+          <small>Status</small>
+          <span class="status-badge" [class]="getStatusClass(averageScore)">
+            {{ getStatus(averageScore) }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grades -->
+    <section class="grades-section">
+      <div class="section-title">
+        <h2>Your Grades</h2>
+        <p>Subject performance overview</p>
+      </div>
+
+      <div class="grades-grid">
+        @for (grade of grades; track grade.id) {
+          <div class="grade-card">
+            <div class="grade-header">
+              <strong>{{ grade.subjectName }}</strong>
+              <span class="grade-badge" [class]="'grade-' + grade.grade.replace('+','plus').replace('-','minus')">
+                {{ grade.grade }}
+              </span>
+            </div>
+            <div class="grade-score">{{ grade.score }}%</div>
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="grade.score"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+  }
+
+</main>
