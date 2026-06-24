@@ -2,9 +2,14 @@
 
   <header class="dashboard-header">
     @if (currentStudent) {
-      <div>
-        <h1>Welcome, {{ currentStudent.name }}</h1>
-        <p>{{ currentStudent.form }} · {{ currentStudent.stream }} Stream</p>
+      <div class="header-info">
+        <div>
+          <h1>Welcome, {{ currentStudent.name }}</h1>
+          <p>{{ currentStudent.form }} · {{ currentStudent.stream }} Stream</p>
+        </div>
+        <div class="header-meta">
+          <span class="term-badge">Term 2</span>
+        </div>
       </div>
     }
   </header>
@@ -23,10 +28,22 @@
       <div class="summary-card">
         <span class="material-icons card-icon">trending_up</span>
         <div>
-          <small>Your Average</small>
+          <small>Overall Mean</small>
           <strong>{{ averageScore }}%</strong>
+          <span class="delta positive" *ngIf="averageDelta > 0">+{{ averageDelta }}% from last term</span>
+          <span class="delta negative" *ngIf="averageDelta < 0">{{ averageDelta }}% from last term</span>
         </div>
       </div>
+
+      <div class="summary-card">
+        <span class="material-icons card-icon">emoji_events</span>
+        <div>
+          <small>Best Subject</small>
+          <strong class="best-subject-name">{{ bestSubject?.subjectName || '—' }}</strong>
+          <span class="best-subject-score" *ngIf="bestSubject">{{ bestSubject.score }}% · {{ bestSubject.grade }}</span>
+        </div>
+      </div>
+
       <div class="summary-card">
         <span class="material-icons card-icon">subject</span>
         <div>
@@ -34,6 +51,7 @@
           <strong>{{ grades.length }}</strong>
         </div>
       </div>
+
       <div class="summary-card">
         <span class="material-icons card-icon">grade</span>
         <div>
@@ -45,14 +63,99 @@
       </div>
     </section>
 
-    <!-- Grades -->
-    <section class="grades-section">
-      <div class="section-title">
-        <h2>Your Grades</h2>
-        <p>Subject performance overview</p>
+    <!-- Middle row: Skills breakdown + Study tip -->
+    <section class="mid-row">
+
+      <!-- Skills Breakdown -->
+      <div class="skills-card">
+        <div class="section-title">
+          <h2>Skills Breakdown</h2>
+          <p>Competency based on assessment clusters</p>
+        </div>
+        <div class="skills-list">
+          @for (skill of skills; track skill.name) {
+            <div class="skill-row">
+              <div class="skill-label">
+                <span>{{ skill.name }}</span>
+                <span class="skill-pct">{{ skill.value }}%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="skill.value" [class]="skill.level"></div>
+              </div>
+            </div>
+          }
+        </div>
       </div>
 
-      <div class="grades-grid">
+      <!-- Study Tip -->
+      <div class="study-tip-card" *ngIf="studyTipSubject">
+        <div class="tip-header">
+          <span class="material-icons tip-icon">lightbulb</span>
+          <span class="tip-label">Study Tip</span>
+        </div>
+        <p class="tip-body">
+          Focus on <strong>{{ studyTipSubject.subjectName }}</strong> this week — your score is
+          {{ studyTipSubject.score }}%. A few extra practice sessions could push you to the next grade.
+        </p>
+        <div class="tip-subject-badge">{{ studyTipSubject.grade }}</div>
+      </div>
+
+    </section>
+
+    <!-- Individual Subject Analysis -->
+    <section class="grades-section">
+      <div class="section-header">
+        <div class="section-title">
+          <h2>Individual Subject Analysis</h2>
+          <p>Subject performance overview</p>
+        </div>
+      </div>
+
+      <!-- Table view -->
+      <div class="grades-table-wrapper">
+        <table class="grades-table">
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Current Score</th>
+              <th>Grade</th>
+              <th>Performance Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (grade of grades; track grade.id) {
+              <tr class="grade-row">
+                <td class="subject-cell">
+                  <span class="subject-icon material-icons">{{ getSubjectIcon(grade.subjectName) }}</span>
+                  <span class="subject-name">{{ grade.subjectName }}</span>
+                </td>
+                <td class="score-cell">
+                  <div class="score-with-bar">
+                    <span class="score-val">{{ grade.score }}%</span>
+                    <div class="mini-bar">
+                      <div class="mini-fill" [style.width.%]="grade.score"></div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="grade-badge" [class]="'grade-' + grade.grade.replace('+','plus').replace('-','minus')">
+                    {{ grade.grade }}
+                  </span>
+                </td>
+                <td>
+                  <span class="perf-status" [class]="getPerfStatusClass(grade.score)">
+                    <span class="material-icons perf-icon">{{ getPerfStatusIcon(grade.score) }}</span>
+                    {{ getPerfStatus(grade.score) }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Card view (mobile fallback) -->
+      <div class="grades-grid mobile-only">
         @for (grade of grades; track grade.id) {
           <div class="grade-card">
             <div class="grade-header">
@@ -65,9 +168,14 @@
             <div class="progress-bar">
               <div class="progress-fill" [style.width.%]="grade.score"></div>
             </div>
+            <span class="perf-status" [class]="getPerfStatusClass(grade.score)">
+              <span class="material-icons perf-icon">{{ getPerfStatusIcon(grade.score) }}</span>
+              {{ getPerfStatus(grade.score) }}
+            </span>
           </div>
         }
       </div>
+
     </section>
 
   }
